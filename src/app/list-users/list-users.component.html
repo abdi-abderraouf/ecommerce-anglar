@@ -1,0 +1,43 @@
+
+
+<div class="text-center"> <button class="btn btn-danger" [disabled]="selection==[]" (click)="deleteAdll()">Supprimer la séléction</button></div>
+
+<table class="table bordered">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Nom Complet</th>
+    <th>Email</th>
+    <th>Adresse</th>
+    <th>Tel</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let us of users" >
+<td ><input placeholder="x" name="sel" (click)="adddel(us.id)" type="checkbox"> Select</td>
+<td>{{us.nomcomplet}}</td>
+<td>{{us.email}}</td>
+<td>{{us.adresse}}</td>
+<td>{{us.tel}}</td>
+<td><button (click)="deleteOne(us.id)" class="btn btn-danger">supprimer</button>
+
+ &nbsp;&nbsp;<button (click)="selectit(us)" class="btn btn-success">selectionner</button>
+
+
+</td>
+
+  </tr>
+</tbody>
+
+</table>
+<!-- bloc de recherche mis ici car il perturbe le design du tableau-->
+Recherche : <input type="text" [(ngModel)]="filtre" name = 'search' placeholder="Rechercher">
+<div class="table table-bordred">
+<div *ngFor="let us of users">
+<tr *ngIf="us.nomcomplet?.includes(filtre)"  >
+<td>{{us.nomcomplet}}</td>
+<td>{{us.email}}</td>
+</tr>
+</div>
+</div>
